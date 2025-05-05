@@ -39,5 +39,5 @@ Digitar o nome de produto "${PRODUTO}" no campo de pesquisa
 Clicar no botão de pesquisa
     Click Element   locator=nav-search-submit-button
 
-Verificar o resultado da pesquisa, listando o produto pesquisado
-    Wait Until Element Is Visible    locator=//h2[normalize-space()='Resultados']
+Verificar o resultado da pesquisa, listando o produto pesquisado ${PRODUTO}
+    Wait Until Element Is Visible    locator=//span[normalize-space()='${PRODUTO}']
