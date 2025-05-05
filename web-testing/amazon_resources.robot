@@ -1,5 +1,6 @@
 *** Settings ***
 Library     SeleniumLibrary
+Library    XML
 
 *** Variables ***
 ${URL}                                                            https://www.amazon.com.br/
@@ -12,6 +13,7 @@ Abrir o navegador
     Open Browser    browser=chrome
     Maximize Browser Window
 Fechar o navegador
+    Capture Page Screenshot
     Close Browser
 
 Acessar a home page do site Amazon.com.br
@@ -30,3 +32,12 @@ Verificar se o título da página fica "${FRASE}"
 
 Verificar se aparece a categoria "Computadores e Informática"
     Element Should Be Visible   locator=${ITENS_INFORMATICA}
+
+Digitar o nome de produto "${PRODUTO}" no campo de pesquisa
+    Input Text    locator=twotabsearchtextbox    text=${PRODUTO}
+
+Clicar no botão de pesquisa
+    Click Element   locator=nav-search-submit-button
+
+Verificar o resultado da pesquisa, listando o produto pesquisado
+    Wait Until Element Is Visible    locator=//h2[normalize-space()='Resultados']
